@@ -390,7 +390,7 @@ namespace StarterAssets
                             Vector3 speedNormalV = -seedToBolderV.normalized;
 
                             
-                            rigidBody.AddForce(speedNormalV * 10);
+                            rigidBody.AddForce(speedNormalV * 100.0f);
                         }
                             
 
