@@ -1118,6 +1118,11 @@ MonoBehaviour:
   attackDelay: 0
   velocity: 0
   seedsCarried: 0
+  seedTypes:
+  - trampoline
+  - push
+  - test
+  selectedSeedType: 
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -1298,6 +1303,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9482cb0ba405642a1843dddc85c05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSeedType: 
+  OnCollectSeed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: c5644a0ed44c4694c88953520461dbbe, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

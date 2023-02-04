@@ -15,7 +15,9 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
-        public GameObject projectilePrefab;
+        public GameObject trampolinePrefab;
+        public GameObject pushPrefab;
+        public GameObject glidePrefab;
         public float attackDelay;
         public float velocity;
         public int seedsCarried = 0;
@@ -25,6 +27,7 @@ namespace StarterAssets
         public string selectedSeedType;
 
         private PlayerInventory _inventory;
+        private InventoryUi _inventoryUI;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -155,10 +158,11 @@ namespace StarterAssets
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
             _inventory = GetComponent<PlayerInventory>();
+            _inventoryUI = GetComponent<InventoryUi>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+            Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
@@ -173,6 +177,7 @@ namespace StarterAssets
             seedsCarried = _inventory.trampolineSeeds;
             attackDelay -= Time.deltaTime;
             _hasAnimator = TryGetComponent(out _animator);
+            SelectSeed();
             Attack(selectedSeedType);
             JumpAndGravity(JumpHeight);
             GroundedCheck();
@@ -370,34 +375,57 @@ namespace StarterAssets
         {
             if (_input.attack && attackDelay < 0)
             {
+                seedsCarried = _inventory.GetSelectedSeedCount(type);
                 if (seedsCarried > 0)
                 {
                     attackDelay = 3;
-                    seedsCarried--;
                     Vector3 pos = transform.position + new Vector3(0, 0, 1);
                     Quaternion rot = transform.rotation;
-                    Instantiate(projectilePrefab, pos, rot);
-                    _inventory.PlantSeed(selectedSeedType);
-                    List<GameObject> bolders = findGameObjectsInRadius(10.0f);
-                    foreach(GameObject bolder in bolders)
+
+                    _inventory.PlantSeed(type, pos, rot);
+                    if (type == "push")
                     {
-                        Rigidbody rigidBody = bolder.GetComponent<Rigidbody>();
-                        if(rigidBody != null)
+                        List<GameObject> bolders = findGameObjectsInRadius(10.0f);
+                        foreach (GameObject bolder in bolders)
                         {
-                            Vector3 seedToBolderV = bolder.transform.position - pos;
-                            Debug.Log("seedToBolderV: " + seedToBolderV);
+                            Rigidbody rigidBody = bolder.GetComponent<Rigidbody>();
+                            if (rigidBody != null)
+                            {
+                                Vector3 seedToBolderV = bolder.transform.position - pos;
+                                Debug.Log("seedToBolderV: " + seedToBolderV);
 
-                            Vector3 speedNormalV = -seedToBolderV.normalized;
+                                Vector3 speedNormalV = -seedToBolderV.normalized;
 
-                            
-                            rigidBody.AddForce(speedNormalV * 100.0f);
+
+                                rigidBody.AddForce(speedNormalV * 100.0f);
+                            }
+
+
                         }
-                            
-
                     }
-                    _inventory.PlantSeed(type);
-
                 }
+            }
+        }
+
+        private void SelectSeed()
+        {
+
+            if (_input.select1)
+            {
+                selectedSeedType = seedTypes[0];
+                Debug.Log("Selected Seed: " + selectedSeedType);
+            }
+            if (_input.select2)
+            {
+                selectedSeedType = seedTypes[1];
+                Debug.Log("Selected Seed: " + selectedSeedType);
+
+            }
+            if (_input.select3)
+            {
+                selectedSeedType = seedTypes[2];
+                Debug.Log("Selected Seed: " + selectedSeedType);
+
             }
         }
 

@@ -13,6 +13,9 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool attack;
+		public bool select1;
+		public bool select2;
+		public bool select3;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +52,18 @@ namespace StarterAssets
 		{
 			AttackInput(value.isPressed);
 		}
+		public void OnSelect1(InputValue value)
+		{
+			Select1Input(value.isPressed);
+		}
+		public void OnSelect2(InputValue value)
+		{
+			Select2Input(value.isPressed);
+		}
+		public void OnSelect3(InputValue value)
+		{
+			Select3Input(value.isPressed);
+		}
 #endif
 
 
@@ -75,6 +90,21 @@ namespace StarterAssets
 		public void AttackInput(bool newAttackState)
 		{
 			attack = newAttackState;
+		}
+
+		public void Select1Input(bool newSelect1InputState)
+		{
+			select1 = newSelect1InputState;
+		}
+
+		public void Select2Input(bool newSelect2InputState)
+		{
+			select2 = newSelect2InputState;
+		}
+
+		public void Select3Input(bool newSelect3InputState)
+		{
+			select3 = newSelect3InputState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
