@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -373,6 +374,23 @@ namespace StarterAssets
                     Quaternion rot = transform.rotation;
                     Instantiate(projectilePrefab, pos, rot);
                     _inventory.PlantSeed();
+                    List<GameObject> bolders = findGameObjectsInRadius(10.0f);
+                    foreach(GameObject bolder in bolders)
+                    {
+                        Rigidbody rigidBody = bolder.GetComponent<Rigidbody>();
+                        if(rigidBody != null)
+                        {
+                            Vector3 seedToBolderV = bolder.transform.position - pos;
+                            Debug.Log("seedToBolderV: " + seedToBolderV);
+
+                            Vector3 speedNormalV = -seedToBolderV.normalized;
+
+                            
+                            rigidBody.AddForce(speedNormalV * 10);
+                        }
+                            
+
+                    }
                 }
             }
         }
@@ -416,6 +434,25 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        private List<GameObject> findGameObjectsInRadius(float radius)
+        {
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Bolder");
+            Debug.Log("gameObjects: " + gameObjects);
+            Debug.Log("gameObjects: " + gameObjects.Length);
+            List<GameObject> boldersCloseBy = new List<GameObject>();
+
+            foreach (GameObject obj in gameObjects)
+            {
+                if (Vector3.Distance(transform.position, obj.transform.position) < radius)
+                {
+                    boldersCloseBy.Add(obj);
+                }
+            }
+            Debug.Log("Bolders: " + boldersCloseBy.Count);
+            return boldersCloseBy;
+
         }
     }
 }
