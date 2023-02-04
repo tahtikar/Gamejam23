@@ -361,7 +361,7 @@ namespace StarterAssets
             if (_input.attack && attackDelay < 0)
             {
                 attackDelay = 3;
-                Vector3 pos = transform.position + new Vector3(0, 1, 1);
+                Vector3 pos = transform.position + new Vector3(0, 0, 1);
                 Quaternion rot = transform.rotation;
                 Instantiate(projectilePrefab, pos, rot);
                 
