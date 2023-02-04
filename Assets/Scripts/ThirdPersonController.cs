@@ -103,10 +103,15 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private Vector3 _playerStartPosition;
+        private bool resetPosition = false;
+        private int respawnTimer;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
+
+        
 
         // animation IDs
         private int _animIDSpeed;
@@ -170,6 +175,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _playerStartPosition = transform.position;
+            respawnTimer = 1;
         }
 
         private void Update()
@@ -181,7 +188,30 @@ namespace StarterAssets
             Attack(selectedSeedType);
             JumpAndGravity(JumpHeight);
             GroundedCheck();
-            Move();
+            if (resetPosition)
+            {
+                resetPosition = false;
+                respawnTimer = 0;
+                transform.position = _playerStartPosition;
+                _speed = 0;
+                _animationBlend = 0f;
+                _input.move = Vector2.zero;
+
+                // update animator if using character
+                if (_hasAnimator)
+                {
+                    _animator.SetFloat(_animIDSpeed, _animationBlend);
+                }
+            }
+            else if(respawnTimer < 10 )
+            {
+                respawnTimer++;
+                
+            }
+            else
+            {
+                Move();
+            }
         }
 
         private void LateUpdate()
@@ -236,6 +266,24 @@ namespace StarterAssets
 
         private void Move()
         {
+            /*
+            if(resetPosition)
+            {
+                _speed = 0;
+                _animationBlend = 0f;
+                _input.move = Vector2.zero;
+
+                // update animator if using character
+                if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+                }
+            }
+            else
+            {
+                
+            }
+            */
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -300,6 +348,7 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
+
         }
 
         public void JumpAndGravity(float JumpHeight, bool force=false)
@@ -493,6 +542,16 @@ namespace StarterAssets
             Debug.Log("Bolders: " + boldersCloseBy.Count);
             return boldersCloseBy;
 
+        }
+
+        public void resetPlayer()
+        {
+            Debug.Log("resetPlayer");
+            Debug.Log("_playerStartPosition: " + _playerStartPosition);
+            Debug.Log("transform.position: "+ transform.position);
+
+            transform.position = _playerStartPosition;
+            resetPosition = true;
         }
     }
 }
