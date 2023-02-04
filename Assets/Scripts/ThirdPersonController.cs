@@ -14,6 +14,10 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public GameObject projectilePrefab;
+        public float attackDelay;
+        public float velocity;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -75,6 +79,8 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -97,6 +103,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -154,8 +161,9 @@ namespace StarterAssets
 
         private void Update()
         {
+            attackDelay -= Time.deltaTime;
             _hasAnimator = TryGetComponent(out _animator);
-
+            Attack();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -345,6 +353,18 @@ namespace StarterAssets
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
+            }
+        }
+
+        private void Attack()
+        {
+            if (_input.attack && attackDelay < 0)
+            {
+                attackDelay = 3;
+                Vector3 pos = transform.position + new Vector3(0, 1, 1);
+                Quaternion rot = transform.rotation;
+                Instantiate(projectilePrefab, pos, rot);
+                
             }
         }
 
