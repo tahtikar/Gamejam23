@@ -169,7 +169,7 @@ namespace StarterAssets
             attackDelay -= Time.deltaTime;
             _hasAnimator = TryGetComponent(out _animator);
             Attack();
-            JumpAndGravity();
+            JumpAndGravity(JumpHeight);
             GroundedCheck();
             Move();
         }
@@ -292,9 +292,9 @@ namespace StarterAssets
             }
         }
 
-        private void JumpAndGravity()
+        public void JumpAndGravity(float JumpHeight, bool force=false)
         {
-            if (Grounded)
+            if (Grounded || force)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
@@ -416,6 +416,11 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void SetJumpHeight(float jh)
+        {
+            JumpHeight = jh;
         }
     }
 }

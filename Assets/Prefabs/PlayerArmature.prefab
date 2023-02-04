@@ -1117,7 +1117,7 @@ MonoBehaviour:
     type: 3}
   attackDelay: 0
   velocity: 0
-  seedsCarried: 3
+  seedsCarried: 0
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
