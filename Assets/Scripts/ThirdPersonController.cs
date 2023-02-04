@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -18,6 +19,10 @@ namespace StarterAssets
         public float attackDelay;
         public float velocity;
         public int seedsCarried = 0;
+
+        public string[] seedTypes = { "trampoline", "push", "test" };
+
+        public string selectedSeedType;
 
         private PlayerInventory _inventory;
 
@@ -165,10 +170,10 @@ namespace StarterAssets
 
         private void Update()
         {
-            seedsCarried = _inventory.seeds;
+            seedsCarried = _inventory.trampolineSeeds;
             attackDelay -= Time.deltaTime;
             _hasAnimator = TryGetComponent(out _animator);
-            Attack();
+            Attack(selectedSeedType);
             JumpAndGravity(JumpHeight);
             GroundedCheck();
             Move();
@@ -361,7 +366,7 @@ namespace StarterAssets
             }
         }
 
-        private void Attack()
+        private void Attack(string type)
         {
             if (_input.attack && attackDelay < 0)
             {
@@ -372,7 +377,26 @@ namespace StarterAssets
                     Vector3 pos = transform.position + new Vector3(0, 0, 1);
                     Quaternion rot = transform.rotation;
                     Instantiate(projectilePrefab, pos, rot);
-                    _inventory.PlantSeed();
+                    _inventory.PlantSeed(selectedSeedType);
+                    List<GameObject> bolders = findGameObjectsInRadius(10.0f);
+                    foreach(GameObject bolder in bolders)
+                    {
+                        Rigidbody rigidBody = bolder.GetComponent<Rigidbody>();
+                        if(rigidBody != null)
+                        {
+                            Vector3 seedToBolderV = bolder.transform.position - pos;
+                            Debug.Log("seedToBolderV: " + seedToBolderV);
+
+                            Vector3 speedNormalV = -seedToBolderV.normalized;
+
+                            
+                            rigidBody.AddForce(speedNormalV * 10);
+                        }
+                            
+
+                    }
+                    _inventory.PlantSeed(type);
+
                 }
             }
         }
@@ -418,9 +442,29 @@ namespace StarterAssets
             }
         }
 
+
         public void SetJumpHeight(float jh)
         {
             JumpHeight = jh;
+        }
+
+        private List<GameObject> findGameObjectsInRadius(float radius)
+        {
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Bolder");
+            Debug.Log("gameObjects: " + gameObjects);
+            Debug.Log("gameObjects: " + gameObjects.Length);
+            List<GameObject> boldersCloseBy = new List<GameObject>();
+
+            foreach (GameObject obj in gameObjects)
+            {
+                if (Vector3.Distance(transform.position, obj.transform.position) < radius)
+                {
+                    boldersCloseBy.Add(obj);
+                }
+            }
+            Debug.Log("Bolders: " + boldersCloseBy.Count);
+            return boldersCloseBy;
+
         }
     }
 }
