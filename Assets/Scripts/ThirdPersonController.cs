@@ -17,6 +17,9 @@ namespace StarterAssets
         public GameObject projectilePrefab;
         public float attackDelay;
         public float velocity;
+        public int seedsCarried = 0;
+
+        private PlayerInventory _inventory;
 
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -146,6 +149,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _inventory = GetComponent<PlayerInventory>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -161,6 +165,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            seedsCarried = _inventory.seeds;
             attackDelay -= Time.deltaTime;
             _hasAnimator = TryGetComponent(out _animator);
             Attack();
@@ -360,11 +365,15 @@ namespace StarterAssets
         {
             if (_input.attack && attackDelay < 0)
             {
-                attackDelay = 3;
-                Vector3 pos = transform.position + new Vector3(0, 0, 1);
-                Quaternion rot = transform.rotation;
-                Instantiate(projectilePrefab, pos, rot);
-                
+                if (seedsCarried > 0)
+                {
+                    attackDelay = 3;
+                    seedsCarried--;
+                    Vector3 pos = transform.position + new Vector3(0, 0, 1);
+                    Quaternion rot = transform.rotation;
+                    Instantiate(projectilePrefab, pos, rot);
+                    _inventory.PlantSeed();
+                }
             }
         }
 

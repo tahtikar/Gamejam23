@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 3681806856115770386}
   - component: {fileID: 2389708897232386134}
   - component: {fileID: 4681086373513265929}
-  - component: {fileID: 3924305206055326363}
   m_Layer: 0
   m_Name: Shaft
   m_TagString: Untagged
@@ -184,20 +183,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3924305206055326363
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3414311911765018464}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8105010851930310369
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8105010851930310369}
   m_LocalRotation: {x: -0.27977565, y: 0.048891425, z: 0.16505462, w: 0.9445064}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.39999962}
+  m_LocalPosition: {x: 0, y: 1, z: 0.39999962}
   m_LocalScale: {x: 0.5, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -322,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8211033314023127921}
   m_LocalRotation: {x: 0.2813186, y: 0.03904514, z: -0.1318142, w: 0.949716}
-  m_LocalPosition: {x: 0, y: 1.5, z: -0.39999962}
+  m_LocalPosition: {x: 0, y: 1, z: -0.39999962}
   m_LocalScale: {x: 0.5, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
