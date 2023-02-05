@@ -5,6 +5,8 @@ using UnityEngine;
 public class TrampolineController : MonoBehaviour
 {
     private float originalJumpHeight;
+    private Material m_Material;
+    private Color orig = Color.white;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +17,9 @@ public class TrampolineController : MonoBehaviour
             originalJumpHeight = tpc.JumpHeight;
             tpc.SetJumpHeight(10.0f);
         }
+        m_Material = other.transform.GetChild(1).GetChild(0).GetComponent<Renderer>().materials[0];
+        orig = m_Material.color;
+        m_Material.color = Color.blue;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -23,6 +28,8 @@ public class TrampolineController : MonoBehaviour
         if (tpc != null)
         {
             tpc.SetJumpHeight(originalJumpHeight);
+            m_Material = other.transform.GetChild(1).GetChild(0).GetComponent<Renderer>().materials[0];
+            m_Material.color = orig;
         }
     }
 }

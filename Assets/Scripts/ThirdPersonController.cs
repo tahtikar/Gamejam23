@@ -18,6 +18,7 @@ namespace StarterAssets
         public float attackDelay;
         public float velocity;
         public int seedsCarried = 0;
+        public Material armsColor;
 
         public string[] seedTypes = { "trampoline", "push", "test" };
 
@@ -154,6 +155,8 @@ namespace StarterAssets
 
         private void Start()
         {
+            armsColor = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().materials[1];
+            armsColor.color = Color.blue;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -459,18 +462,18 @@ namespace StarterAssets
             if (_input.select1)
             {
                 selectedSeedType = seedTypes[0];
-                Debug.Log("Selected Seed: " + selectedSeedType);
+                armsColor.color = Color.blue;
             }
             if (_input.select2)
             {
                 selectedSeedType = seedTypes[1];
-                Debug.Log("Selected Seed: " + selectedSeedType);
+                armsColor.color = Color.red;
 
             }
             if (_input.select3)
             {
                 selectedSeedType = seedTypes[2];
-                Debug.Log("Selected Seed: " + selectedSeedType);
+                armsColor.color = Color.yellow;
 
             }
         }
