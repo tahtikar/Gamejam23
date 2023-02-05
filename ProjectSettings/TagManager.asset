@@ -9,6 +9,9 @@ TagManager:
   - Shroom
   - ContainerContents
   - FinishScreen
+  - Undefined
+  - Trap
+  - Trigger
   layers:
   - Default
   - TransparentFX
