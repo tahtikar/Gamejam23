@@ -15,9 +15,6 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
-        public GameObject trampolinePrefab;
-        public GameObject pushPrefab;
-        public GameObject glidePrefab;
         public float attackDelay;
         public float velocity;
         public int seedsCarried = 0;
@@ -524,6 +521,12 @@ namespace StarterAssets
         {
             JumpHeight = jh;
         }
+
+        public void SetGravity(float gr)
+        {
+            Gravity = gr;
+        }
+
 
         private List<GameObject> findGameObjectsInRadius(float radius)
         {

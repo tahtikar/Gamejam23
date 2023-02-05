@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public int trampolineSeeds { get; private set; }
     public int pushSeeds { get; private set; }
+    public int glideSeeds { get; private set; }
     public string selectedSeedType;
     public GameObject trampolinePrefab;
     public GameObject pushPrefab;
@@ -25,6 +26,8 @@ public class PlayerInventory : MonoBehaviour
                 return trampolineSeeds;
             case "push":
                 return pushSeeds;
+            case "glide":
+                return glideSeeds;
             default:
                 return 0;
         }
@@ -39,6 +42,9 @@ public class PlayerInventory : MonoBehaviour
                 break;
             case "push":
                 pushSeeds++;
+                break;
+            case "glide":
+                glideSeeds++;
                 break;
             default:
                 break;
