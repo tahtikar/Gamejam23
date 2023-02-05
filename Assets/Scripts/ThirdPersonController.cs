@@ -193,6 +193,7 @@ namespace StarterAssets
             Attack(selectedSeedType);
             JumpAndGravity(JumpHeight);
             GroundedCheck();
+            CheckForExit();
             if (resetPosition)
             {
                 resetPosition = false;
@@ -217,6 +218,7 @@ namespace StarterAssets
             {
                 Move();
             }
+
         }
 
         private void LateUpdate()
@@ -486,6 +488,14 @@ namespace StarterAssets
             }
         }
 
+        private void CheckForExit()
+        {
+            if (_input.quit)
+            {
+                Application.Quit();
+            }
+        }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -567,7 +577,7 @@ namespace StarterAssets
             transform.position = _playerStartPosition;
             resetPosition = true;
         }
-        public void pickShroom()
+        public void PickShroom()
         {
             pickedShrooms++;
             float yScale = ((float)pickedShrooms / totalShrooms);
@@ -576,6 +586,14 @@ namespace StarterAssets
             Debug.Log(yScale);
             Vector3 scaleChange = new Vector3(0.9f, yScale-0.1f, 0.9f);
             containerContents.transform.localScale = scaleChange;
+        }
+        public bool CanFinish()
+        {
+            if (totalShrooms-pickedShrooms <= 2)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

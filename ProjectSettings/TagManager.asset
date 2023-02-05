@@ -8,6 +8,7 @@ TagManager:
   - Bolder
   - Shroom
   - ContainerContents
+  - FinishScreen
   layers:
   - Default
   - TransparentFX

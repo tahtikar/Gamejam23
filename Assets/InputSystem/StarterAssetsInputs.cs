@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool select1;
 		public bool select2;
 		public bool select3;
+		public bool quit;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -64,6 +65,10 @@ namespace StarterAssets
 		{
 			Select3Input(value.isPressed);
 		}
+		public void OnQuit(InputValue value)
+		{
+			QuitInput(value.isPressed);
+		}
 #endif
 
 
@@ -105,6 +110,11 @@ namespace StarterAssets
 		public void Select3Input(bool newSelect3InputState)
 		{
 			select3 = newSelect3InputState;
+		}
+
+		public void QuitInput(bool newQuitInputState)
+		{
+			quit = newQuitInputState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

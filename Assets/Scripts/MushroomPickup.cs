@@ -11,7 +11,7 @@ public class MushroomPickup : MonoBehaviour
 
         if (tpc != null)
         {
-            tpc.pickShroom();
+            tpc.PickShroom();
             gameObject.SetActive(false);
         }
     }
