@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Bolder
+  - Shroom
+  - ContainerContents
   layers:
   - Default
   - TransparentFX

@@ -7,10 +7,11 @@ public class MushroomPickup : MonoBehaviour
     public string type;
     private void OnTriggerEnter(Collider other)
     {
-        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+        StarterAssets.ThirdPersonController tpc = other.GetComponent<StarterAssets.ThirdPersonController>();
 
-        if (playerInventory != null)
+        if (tpc != null)
         {
+            tpc.pickShroom();
             gameObject.SetActive(false);
         }
     }

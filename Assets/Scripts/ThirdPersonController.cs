@@ -19,6 +19,9 @@ namespace StarterAssets
         public float velocity;
         public int seedsCarried = 0;
         public Material armsColor;
+        private int totalShrooms;
+        public int pickedShrooms = 0;
+        private GameObject containerContents;
 
         public string[] seedTypes = { "trampoline", "push", "test" };
 
@@ -155,6 +158,8 @@ namespace StarterAssets
 
         private void Start()
         {
+            containerContents = GameObject.FindGameObjectWithTag("ContainerContents");
+            totalShrooms = GameObject.FindGameObjectsWithTag("Shroom").Length;
             armsColor = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().materials[1];
             armsColor.color = Color.blue;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -558,6 +563,16 @@ namespace StarterAssets
 
             transform.position = _playerStartPosition;
             resetPosition = true;
+        }
+        public void pickShroom()
+        {
+            pickedShrooms++;
+            float yScale = ((float)pickedShrooms / totalShrooms);
+            Debug.Log(totalShrooms);
+            Debug.Log(pickedShrooms);
+            Debug.Log(yScale);
+            Vector3 scaleChange = new Vector3(0.9f, yScale-0.1f, 0.9f);
+            containerContents.transform.localScale = scaleChange;
         }
     }
 }
