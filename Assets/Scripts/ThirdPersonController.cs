@@ -112,7 +112,7 @@ namespace StarterAssets
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
-        
+
 
         // animation IDs
         private int _animIDSpeed;
@@ -163,7 +163,7 @@ namespace StarterAssets
             armsColor = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().materials[1];
             armsColor.color = Color.blue;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -211,7 +211,7 @@ namespace StarterAssets
             else if(respawnTimer < 10 )
             {
                 respawnTimer++;
-                
+
             }
             else
             {
@@ -286,7 +286,7 @@ namespace StarterAssets
             }
             else
             {
-                
+
             }
             */
             // set target speed based on move speed, sprint speed and if sprint is pressed
@@ -449,6 +449,9 @@ namespace StarterAssets
                                 Debug.Log("seedToBolderV: " + seedToBolderV);
 
                                 Vector3 speedNormalV = -seedToBolderV.normalized;
+                                //make normal vector to be nearly paralel with y aksis so there is no upward motion
+                                speedNormalV.
+                                Debug.Log("speedNormalV: "+ speedNormalV);
 
 
                                 rigidBody.AddForce(speedNormalV * 100.0f);
