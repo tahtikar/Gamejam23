@@ -450,7 +450,7 @@ namespace StarterAssets
 
                                 Vector3 speedNormalV = -seedToBolderV.normalized;
                                 //make normal vector to be nearly paralel with y aksis so there is no upward motion
-                                speedNormalV.
+                                speedNormalV.y = 0.01f;
                                 Debug.Log("speedNormalV: "+ speedNormalV);
 
 
