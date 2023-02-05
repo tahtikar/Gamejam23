@@ -2016,74 +2016,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: pushPrefab
-      value: 
-      objectReference: {fileID: 2549938510535499942, guid: 05160b5edc98cb441880f37b7b8947a3,
-        type: 3}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: glidePrefab
-      value: 
-      objectReference: {fileID: 2549938510535499942, guid: 05160b5edc98cb441880f37b7b8947a3,
-        type: 3}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: trampolinePrefab
-      value: 
-      objectReference: {fileID: 2549938510535499942, guid: 42d3e449e897d0e4eb0b50724665c3ec,
-        type: 3}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateselectedSeedCountText
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateselectedSeedTypeText
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryUi, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InventoryUi, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: PlayerInventory, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618082245904712485, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: OnCollectSeed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: PlayerInventory, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
       propertyPath: m_RootOrder
@@ -2143,21 +2075,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerArmature
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: selectedSeedType
-      value: push
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: seedTypes.Array.data[2]
-      value: glide
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
-        type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: KeyboardMouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
